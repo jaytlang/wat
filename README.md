@@ -1,6 +1,6 @@
 # wat
 
-hi
+hi, greetings, welcome!
 
 this doesn't exactly fit in with the rest of my systems-oriented githubrepositories. but you know what? if anything this shows my ability to produce semi-quality code under pressure.
 
@@ -18,4 +18,13 @@ wait, you're actually interested in running this thing?!
 
 make sure you have the ncurses library installed, as well as the wiiuselibrary for wiimote support. both of these are pretty easy to find - what's harder is a stock Nintendo Wiimote or a third party one with all necessary protocols implemented. manufacturers cut corners so I recommend the former.
 
-once you have everything on hand, do make and then ./tetris. the script will take care of setting up wiimote connections and getting the game on!
+once you have everything on hand...
+
+'''
+make
+./tetris
+'''
+
+easy. the script will take care of wiimote discovery and get the game on!
+
+
