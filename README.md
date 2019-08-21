@@ -20,10 +20,10 @@ make sure you have the ncurses library installed, as well as the wiiuselibrary f
 
 once you have everything on hand...
 
-'''
+```
 make
 ./tetris
-'''
+```
 
 easy. the script will take care of wiimote discovery and get the game on!
 
