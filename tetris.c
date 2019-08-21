@@ -287,7 +287,7 @@ int main() {
   }
 
   printw("\n ------ YOU ARE DED ------\n");
-  printw("-> Final score: %d ----\n", score);
+  printw("-> Final score: %d\n", score);
   refresh();
   usleep(10000000);
   wiiuse_cleanup(wiimotes, MAX_WIIMOTES);
