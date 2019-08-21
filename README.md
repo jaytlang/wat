@@ -2,7 +2,7 @@
 
 hi, greetings, welcome!
 
-this doesn't exactly fit in with the rest of my systems-oriented githubrepositories. but you know what? if anything this shows my ability to produce semi-quality code under pressure.
+this doesn't exactly fit in with the rest of my systems-oriented github repositories. but you know what? if anything this shows my ability to produce semi-quality code under pressure.
 
 yesterday my friend dared me to write a tetris clone in C, given under 24 hours to complete the task. i accepted on the condition that i get a chocolate bar upon completion as reward - who would pass that up?
 
