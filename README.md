@@ -1,4 +1,4 @@
-# wat
+# WAT
 
 hi, greetings, welcome!
 
@@ -8,7 +8,7 @@ yesterday my friend dared me to write a tetris clone in C, given under 24 hours 
 
 i ended up being pretty busy that day with other projects, but was able to work on the project that night. now, i wasn't about to give up that chocolate bar (hershey's man, am i right?), one caffeinated drink led to another, and i wound up with this with about 5 hours to spare.
 
-it was at this point that i decided, why not go full send and throw in wiimote support for a true gamer experience? so in true software engineering fashion, more caffeine went in and out (is still coming) something to work with that. woot!
+it was at this point that i decided, why not go full send and throw in wiimote support for a true gamer experience? so in true software engineering fashion, more caffeine went in and out came a functional game. woot!
 
 TL;DR: sleep is for the weak. can i have my chocolate now?
 

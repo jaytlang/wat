@@ -7,9 +7,13 @@
 #include <time.h>
 #include <sys/time.h>
 #include <ncurses.h>
+#include <unistd.h>
+#include "wiiuse.h"
 
-#define ROWS 20
-#define COLS 20
+#define ROWS 10
+#define COLS 10
+#define MAX_WIIMOTES 1
+#define P1 wiimotes[0]
 
 char tbl[ROWS][COLS] = {0};
 int score = 0;
@@ -182,6 +186,7 @@ void printTbl() {
     printw("\n");
   }
   printw("\nScore: %d\n", score);
+  refresh();
 }
 
 void doCurrent(int action) {
@@ -219,9 +224,35 @@ static inline int isLater(struct timeval pre, struct timeval post) {
 }
 
 int main() {
+  wiimote **wiimotes;
+  int found, connected;
+  wiimotes = wiiuse_init(MAX_WIIMOTES);
+  printf("--- Welcome to Tetris! Grab your wiimotes... ---\n");
+  printf("--- Press 1+2 to enter discovery mode. ---\n");
+
+  found = wiiuse_find(wiimotes, MAX_WIIMOTES, 5);
+  if (!found)  {
+    printf("[MAIN-ERR] Discovery failed! Check your wiimote to be sure the LEDs are flashing.\n");
+    return 0;
+  }
+
+  connected = wiiuse_connect(wiimotes, MAX_WIIMOTES);
+  if (!connected) {
+    printf("[MAIN-ERR] Connection failed! Feel free to re-run.\n");
+    return 0;
+  }
+
+  printf("--- Connected! Loading Tetris now... ---\n");
+  wiiuse_set_leds(P1, WIIMOTE_LED_1);
+  wiiuse_rumble(P1, 1);
+  usleep(1000000);
+  wiiuse_rumble(P1, 0);
+
+  initscr();
+  refresh();
   srand(time(0));
   score = 0;
-  initscr();
+  clear();
 
   struct timeval pre, post;
   gettimeofday(&pre, NULL);
@@ -234,15 +265,32 @@ int main() {
 
   int c;
   while (liveGame) {
-    if ((c = getch()) != ERR) doCurrent(c);
+    if (wiiuse_poll(wiimotes, MAX_WIIMOTES)) {
+      switch (P1->event) {
+        case WIIUSE_EVENT:
+          if (IS_PRESSED(P1, WIIMOTE_BUTTON_LEFT)) doCurrent('a');
+          if (IS_PRESSED(P1, WIIMOTE_BUTTON_RIGHT)) doCurrent('d');
+          if (IS_PRESSED(P1, WIIMOTE_BUTTON_DOWN)) doCurrent('s');
+          if (IS_PRESSED(P1, WIIMOTE_BUTTON_B)) doCurrent('w');
+          if (IS_PRESSED(P1, WIIMOTE_BUTTON_A)) return 0;   //quit
+          break;
+        case WIIUSE_DISCONNECT:
+        case WIIUSE_UNEXPECTED_DISCONNECT:
+          return -1; break;
+      }
+    }
     gettimeofday(&post, NULL);
     if (isLater(pre, post)) {
       doCurrent('s');
       gettimeofday(&pre, NULL);
     }
   }
-  printw("\nYOU ARE DED\n");
-  deleteShape(current);
+
+  printw("\n ------ YOU ARE DED ------\n");
+  printw("-> Final score: %d ----\n", score);
+  refresh();
+  usleep(10000000);
+  wiiuse_cleanup(wiimotes, MAX_WIIMOTES);
   endwin();
   return 0;
 }

@@ -3,4 +3,4 @@
 $CC=clang
 
 tetris: tetris.c
-	$(CC)  tetris.c -o tetris -lncurses
+	$(CC)  tetris.c -o tetris -lncurses -lwiiuse
