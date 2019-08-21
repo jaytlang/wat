@@ -21,6 +21,15 @@ you can find the executables in the bin folder. wiimote controls are as follows:
   - B: rotate shape
   - A: force quit
 
+additionally, you can head into the source and change the number of rows/cols as much as you'd like. this is within the first few lines of tetris-one.c and looks like this:
+
+```
+#define ROWS 20
+#define COLS 10
+```
+
+obviously changes require recompilation to take effect, which brings me to my next topic...
+
 ## how to build
 
 wait, you're actually interested in running this thing?!
@@ -30,7 +39,7 @@ make sure you have the ncurses library installed, as well as the wiiuselibrary f
 once you have everything on hand...
 
 ```
-make tetris-one
+make
 cd bin && ./tetris-one
 ```
 

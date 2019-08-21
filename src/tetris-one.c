@@ -1,5 +1,5 @@
-// Tetris in C, on the cheap
-// Hopefully under 500 lines?!
+// Tetris in C, on the cheap.
+// Single-player, wiimote supported in under 300 lines.
 // Jay Lang, 2019
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "wiiuse.h"
 
-#define ROWS 10
+#define ROWS 20
 #define COLS 10
 #define MAX_WIIMOTES 1
 #define P1 wiimotes[0]
@@ -245,7 +245,7 @@ int main() {
   printf("--- Connected! Loading Tetris now... ---\n");
   wiiuse_set_leds(P1, WIIMOTE_LED_1);
   wiiuse_rumble(P1, 1);
-  usleep(1000000);
+  usleep(300000);
   wiiuse_rumble(P1, 0);
 
   initscr();
@@ -272,11 +272,25 @@ int main() {
           if (IS_PRESSED(P1, WIIMOTE_BUTTON_RIGHT)) doCurrent('d');
           if (IS_PRESSED(P1, WIIMOTE_BUTTON_DOWN)) doCurrent('s');
           if (IS_PRESSED(P1, WIIMOTE_BUTTON_B)) doCurrent('w');
-          if (IS_PRESSED(P1, WIIMOTE_BUTTON_A)) return 0;   //quit
+          if (IS_PRESSED(P1, WIIMOTE_BUTTON_A)) {
+            printw("\n -- YOU HATH YEETED YOURSELF --\n");
+            printw("-> Final score: %d\n", score);
+            refresh();
+            usleep(10000000);
+            wiiuse_cleanup(wiimotes, MAX_WIIMOTES);
+            endwin();
+            return 0;
+          }
           break;
         case WIIUSE_DISCONNECT:
         case WIIUSE_UNEXPECTED_DISCONNECT:
-          return -1; break;
+            printw("\n -- YOUR WIIMOTE DIED, F FOR RESPECTS --\n");
+            refresh();
+            usleep(10000000);
+            wiiuse_cleanup(wiimotes, MAX_WIIMOTES);
+            endwin();
+            return -1;
+            break;
       }
     }
     gettimeofday(&post, NULL);
