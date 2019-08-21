@@ -10,7 +10,7 @@ i ended up being pretty busy that day with other projects, but was able to work 
 
 it was at this point that i decided, why not go full send and throw in wiimote support for a true gamer experience? so in true software engineering fashion, more caffeine went in and out came a functional game. now we're on to implementing two player, because we can!
 
-in this repo you'll find two things going on: tetris-one and tetris. tetris-one is the finished dare, complete with wiimote support. tetris is under development following its predecessor's success - i'd like to demo a two-player tetris game! wiimote support through wiiuse is janky once you start polling >1 wiimote, but i think it can work.
+in this repo you'll find two things going on: tetris-one and tetris. tetris-one is the finished one-player variant, complete with wiimote support. tetris.c is under development following its predecessor's success - i'd like to demo a two-player tetris game! wiimote support through wiiuse is janky once you start polling >1 wiimote, but i think it can work.
 
 TL;DR: sleep is for the weak. can i have my chocolate now?
 
@@ -34,7 +34,7 @@ obviously changes require recompilation to take effect, which brings me to my ne
 
 wait, you're actually interested in running this thing?!
 
-make sure you have the ncurses library installed, as well as the wiiuselibrary for wiimote support. both of these are pretty easy to find - what's harder is a stock Nintendo Wiimote or a third party one with all necessary protocols implemented. manufacturers cut corners so I recommend the former.
+make sure you have the ncurses library installed, as well as the wiiuse library for wiimote support. both of these are pretty easy to find - what's harder is a stock Nintendo Wiimote or a third party one with all necessary protocols implemented. manufacturers cut corners so I recommend the former.
 
 once you have everything on hand...
 
