@@ -8,9 +8,16 @@ yesterday my friend dared me to write a tetris clone in C, given under 24 hours 
 
 i ended up being pretty busy that day with other projects, but was able to work on the project that night. now, i wasn't about to give up that chocolate bar (hershey's man, am i right?), one caffeinated drink led to another, and i wound up with this with about 5 hours to spare.
 
-it was at this point that i decided, why not go full send and throw in wiimote support for a true gamer experience? so in true software engineering fashion, more caffeine went in and out came a functional game. woot!
+it was at this point that i decided, why not go full send and throw in wiimote support for a true gamer experience? so in true software engineering fashion, more caffeine went in and out came a functional game. now we're on to implementing two player, because we can!
 
 TL;DR: sleep is for the weak. can i have my chocolate now?
+
+## gameplay
+
+you can find the executables in the bin folder. wiimote controls are as follows:
+  - D-Pad: lateral/downward movement
+  - B: rotate shape
+  - A: force quit
 
 ## how to build
 
@@ -21,8 +28,8 @@ make sure you have the ncurses library installed, as well as the wiiuselibrary f
 once you have everything on hand...
 
 ```
-make
-./tetris
+make tetris-one
+cd bin && ./tetris-one
 ```
 
 easy. the script will take care of wiimote discovery and get the game on!
